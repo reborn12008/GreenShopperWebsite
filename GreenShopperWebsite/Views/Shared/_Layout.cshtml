@@ -31,22 +31,12 @@
 
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {
-
-                            <li>
-                                <a>Ferramentas de Admnistrador</a>
-                            </li>
-                        }
-                        else if (SignInManager.IsSignedIn(User) && User.IsInRole("Cliente"))
-                        {
-                            <li>
-                                <a>ESTA UM CLIENTE</a>
-                            </li>
-                        }
-
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                            <li>
-                                <a>Estás logado</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">Administrator Tools</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="InsertDataIndex">Insert Data</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="ViewDataIndex">View/Edit Data</a></li>
+                                </ul>
                             </li>
                         }
                     </ul>

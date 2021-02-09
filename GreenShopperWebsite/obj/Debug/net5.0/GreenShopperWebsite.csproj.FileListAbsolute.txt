@@ -164,3 +164,7 @@ C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\n
 C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Views\Admin\InsertDataIndex.cshtml.g.cs
+C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Views\Admin\ViewDataIndex.cshtml.g.cs
+C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Views\Admin\ViewSupermarkets.cshtml.g.cs
+C:\Users\Filipe\source\repos\GreenShopperWebsite\GreenShopperWebsite\obj\Debug\net5.0\Razor\Views\Admin\CreateSupermarket.cshtml.g.cs
