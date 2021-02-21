@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -12,6 +14,8 @@ namespace GreenShopperWebsite.Models
             ShoplistProducts = new HashSet<ShoplistProduct>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int ProductId { get; set; }
         public string ApiProductId { get; set; }
 

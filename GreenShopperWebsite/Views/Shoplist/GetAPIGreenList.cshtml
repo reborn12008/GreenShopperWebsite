@@ -1,0 +1,80 @@
+﻿@model List<List<GreenShopperWebsite.Models.APIModels.Product>>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "GetAPIGreenList";
+    int counter = 0;
+}
+
+<h1>Choose your products</h1>
+@foreach (List<GreenShopperWebsite.Models.APIModels.Product> betterProductsList in Model)
+{
+    <div class="row row-cols-3 mb-2">
+        <div class="col">
+            <div class="card mr-2" style="width:18rem; height:30rem">
+                <img src="@betterProductsList[0].Image" class="card-img-top" alt="Product Image">
+                <div class="card-body">
+                    <h5 class="card-title">@betterProductsList[0].Name</h5>
+                    <p class="card-text">Preço</p>
+                    <div class="card-body">
+                        <input type="radio" checked value="@betterProductsList[0].Id" name="product_@counter" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        @for (var better_products_count = 1; better_products_count < betterProductsList.Count(); better_products_count++)
+        {
+            <div class="col">
+                <div class="card mr-2" style="width:18rem;height:30rem">
+                    <img src="@betterProductsList[better_products_count].Image" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@betterProductsList[better_products_count].Name</h5>
+                        <p class="card-text">Preço</p>
+                        <div class="card-body">
+                            <input type="radio" value="@betterProductsList[better_products_count].Id" name="product_@counter" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    counter = counter + 1;
+}
+<input type="hidden" id="list_size" value="@counter" />
+@if (SignInManager.IsSignedIn(User))
+{
+    <button onclick="saveShoplist()" class="btn btn-success">Confirm List</button>
+} else
+{
+    <a asp-area="Identity" asp-page="/Account/Register">Create an account to save this list!</a>
+}
+
+
+<script>
+    function saveShoplist() {
+        var listToSave = [];
+        var amount_products = document.getElementById("list_size").value;
+        for (var i = 0; i < amount_products; i++) {
+            var product = document.getElementsByName("product_" + i);
+            for (var j = 0; j < product.length; j++) {
+                if (product[j].checked) {
+                    listToSave.push(product[j].value);
+                }
+            }
+        }
+        console.log(listToSave);
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SaveShoplist")',
+            accepts: "*/*",
+            data: {
+                shopList: listToSave
+            },
+
+            failure: function (response) {
+                console.log(response.responseText);
+            },
+        });
+    }
+</script>

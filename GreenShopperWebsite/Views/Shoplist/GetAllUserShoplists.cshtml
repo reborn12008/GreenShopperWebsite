@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GreenShopperWebsite.Models.Shoplist>
+
+@{
+    ViewData["Title"] = "GetAllUserShoplists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>GetAllUserShoplists</h1>
+
+@if(ViewData["no_shoplist"] != null)
+{
+<div class="container">
+    <p>@ViewData["no_shoplist"]</p>
+</div>
+}
+<div class="container">
+    <table class="table w-75">
+        <thead>
+            <tr>
+                <th>
+                    Date created
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImactDescricao)
+                    </td>
+                    <td>
+                        <button class="btn btn-info" onclick="getDetailedShoplist(@item.ShoplistId)">See details</button>
+                    </td>
+                    <tr id="list_detailed_@item.ShoplistId">
+                        
+                    </tr>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function getDetailedShoplist(shoplist_id) {
+        var detailList = document.getElementById("list_detailed_" + shoplist_id);
+        detailList.innerHTML = "";
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("GetShoplistProducts")',
+            accepts: "*/*",
+            data: {
+                shoplistId: shoplist_id
+            },
+            success: function (data) {
+                detailList.innerHTML = data;
+                console.log(data);
+            },
+            failure: function (response) {
+                console.log(response.responseText);
+            },
+        });
+    }
+</script>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<GreenShopperWebsite.Models.APIModels.Product>
+@{
+    var shoplist_id = ViewData["shoplist_id"];
+}
+@foreach (var item in Model)
+{
+    <td>
+        <img src="@item.Image" style="width:100px" />
+    </td>
+    <td>
+        @item.Name
+    </td>
+}
+    <td>
+        <button onclick="document.getElementById('list_detailed_' + @shoplist_id).innerHTML = '';">Close details</button>
+    </td>
+

@@ -26,8 +26,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Shoplist" asp-action="Index">Shop Greener</a>
                         </li>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-dark" asp-controller="Shoplist" asp-action="GetAllUserShoplists">My Shoplists</a>
+                            </li>
+                        }
 
                         @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
                         {

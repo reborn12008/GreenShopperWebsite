@@ -6,3 +6,78 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="container">
+    <div class="row pt-2">
+        <div class="col">
+        </div>
+        <div class="col">
+            <button id="playerButton" type="button" onclick="openToolTip()">PL</button>
+            <div id="tooltip" class="invisible">
+                <div class="p-2 border-info">
+                    <input type="text" id="message_input1" class="form-control w-50" placeholder="input1"/>
+                    <input type="text" id="message_input2" class="form-control w-50" placeholder="input2"/>
+                    <button  type="button" onclick="submitData()" class="btn btn-outline-success">Confirmar</button>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col">
+            PL
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            ME
+        </div>
+        <div class="col">
+            MC
+        </div>
+        <div class="col">
+            MC
+        </div>
+        <div class="col">
+            MD
+        </div>
+    </div>
+    <div class="row pt-2">
+        <div class="col">
+            DE
+        </div>
+        <div class="col">
+            DC
+        </div>
+        <div class="col">
+            DC
+        </div>
+        <div class="col">
+            DD
+        </div>
+    </div>
+    <div class="row pt-2 justify-content-center">
+        <div class="col-2">
+            GR
+        </div>
+    </div>
+</div>
+
+<script>
+    function openToolTip() {
+        var tootltip = document.getElementById("tooltip");
+        tootltip.classList.remove("invisible");
+        tootltip.setAttribute("z-index", "10");
+    }
+
+    function submitData() {
+        var tootltip = document.getElementById("tooltip");
+        tootltip.classList.add("invisible");
+
+        var inputId = document.getElementById("message_input1").value;
+        var button = document.getElementById("playerButton");
+        button.innerText = inputId;
+        
+    }
+</script>

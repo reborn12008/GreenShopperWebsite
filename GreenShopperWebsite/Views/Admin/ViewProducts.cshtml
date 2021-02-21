@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GreenShopperWebsite.Models.APIModels.Supermarket_Product>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Supermarket
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentProduct.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentSupermarket.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProduct", new { id = item.CurrentProduct.Id , item_price = item.Price, supermarket = item.CurrentSupermarket.Name, supermarketId = item.CurrentSupermarket.Id, supermaketPId = item.Id}) |
+                @Html.ActionLink("Delete", "DeleteProduct", new { id = item.CurrentProduct.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

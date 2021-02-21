@@ -1,0 +1,56 @@
+﻿@model GreenShopperWebsite.Models.APIModels.Product
+
+@{
+    ViewData["Title"] = "EditProduct";
+    var impact_categories = (List<GreenShopperWebsite.Models.APIModels.ImpactCategory>)ViewData["impact_categories"];
+}
+
+<h1>EditProduct</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="alert alert-info" role="alert">
+                Supermarket - @ViewData["supermarket"]
+            </div>
+            <input id="supermarket" name="supermarket" type="hidden" value="@ViewData["supermarket_id"]" />
+            <input id="supermarket_product" name="supermarket_product" type="hidden" value="@ViewData["supermarket_product_id"]" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImpactId" class="control-label">Impact level</label>
+                <select asp-for="ImpactId" class="form-control">
+                    <option selected disabled>Lower the better!</option>
+                    @foreach (GreenShopperWebsite.Models.APIModels.ImpactCategory impact_category in impact_categories)
+                    {
+                        <option value="@impact_category.Id">@impact_category.SeverityLevel</option>
+                    }
+                </select>
+                <span asp-validation-for="ImpactId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Price</label>
+                <input class="form-control" value="@ViewData["price"]" type="number" step="0.01" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ViewDataIndex">Back to List</a>
+</div>
+

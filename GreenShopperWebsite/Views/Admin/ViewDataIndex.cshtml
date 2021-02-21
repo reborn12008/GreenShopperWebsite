@@ -1,4 +1,6 @@
-﻿@*
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -7,16 +9,52 @@
 <div class="row p-2">
     <div class="col-2">
         <div class="list-group">
-            <a class="list-group-item list-group-item-action" asp-controller="Admin" asp-action="ViewSupermarkets">
+            <button id="supermarket_view_btn" class="list-group-item list-group-item-action" selected onclick="callSupermarkets()">
                 Supermarket
-            </a>
-            <a href="#" class="list-group-item list-group-item-action">Product</a>
-            <a href="#" class="list-group-item list-group-item-action">Category</a>
+            </button>
+            <button id="product_view_btn" class="list-group-item list-group-item-action" onclick="callProducts()">Product</button>
         </div>
     </div>
     <div class="col">
-        <div class="container p-2">
-            Choose wich data type you wich to create on the left menu
+        <div id="menu_content" class="container p-2">
+            Choose wich data type you wish to view on the left menu
         </div>
     </div>
 </div>
+
+<script>
+    function callSupermarkets() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ViewSupermarkets", "Admin")',
+            accepts: "*/*",
+            success: function(data) {
+                $('#menu_content').html(data);
+                $('#product_view_btn').removeClass("active");
+                $('#supermarket_view_btn').addClass("active");
+
+            },
+            failure: function (response) {
+                console.log(response.responseText);
+            },
+        });
+    }
+
+        function callProducts() {
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("ViewProducts", "Admin")',
+            accepts: "*/*",
+            success: function(data) {
+                $('#menu_content').html(data);
+                $('#supermarket_view_btn').removeClass("active");
+                $('#product_view_btn').addClass("active");
+
+
+            },
+            failure: function (response) {
+                console.log(response.responseText);
+            },
+        });
+    }
+</script>

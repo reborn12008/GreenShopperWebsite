@@ -140,7 +140,7 @@ namespace GreenShopperWebsite.Models
             {
                 entity.ToTable("Product");
 
-                entity.Property(e => e.ProductId).ValueGeneratedNever();
+                entity.Property(e => e.ProductId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ApiProductId)
                     .HasMaxLength(200)
@@ -152,7 +152,7 @@ namespace GreenShopperWebsite.Models
             {
                 entity.ToTable("Shoplist");
 
-                entity.Property(e => e.ShoplistId).ValueGeneratedNever();
+                entity.Property(e => e.ShoplistId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ImactDescricao)
                     .IsRequired()
@@ -173,7 +173,7 @@ namespace GreenShopperWebsite.Models
                 entity.ToTable("Shoplist_Product");
 
                 entity.Property(e => e.ShoplistProductId)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("Shoplist_ProductId");
 
                 entity.HasOne(d => d.Product)
